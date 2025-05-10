@@ -1,19 +1,79 @@
-1.GET Request Simulation:
+# JMeter GET Request Simulator
 
-Sent concurrent GET requests to retrieve user data.
+A performance testing project using Apache JMeter to simulate HTTP GET requests and analyze API performance.
 
-Measured average response time and analyzed throughput under different loads.
+## ? Overview
 
-2️. Assertions and Listeners:
+This repository contains a JMeter test plan designed to simulate and evaluate the performance of RESTful API GET requests. The test plan is configured to:
 
-Added assertions to verify response content and status codes.
+- Send concurrent GET requests to retrieve user data from a RESTful API
+- Apply appropriate assertions to validate responses
+- Collect performance metrics using various listeners
 
-Monitored the performance using Graph Results and Summary Report listeners.
+## ? Test Configuration
 
-3. Results:
+### Thread Group Setup
 
-Simulated 10 concurrent users with 5 iterations each.
+- **Users (Threads)**: 10 concurrent users
+- **Ramp-up Period**: 5 seconds
+- **Loop Count**: 5 iterations per user
+- **Total Requests**: 50 requests (10 users ? 5 iterations)
 
-Analyzed response times and identified the error rate under load.
+### HTTP Request Details
 
-Ensured the API responded efficiently with minimal errors.
+- **Endpoint**: https://reqres.in/api/users?page=2
+- **Method**: GET
+- **Protocol**: HTTP/HTTPS
+- **Connection**: Keep-alive enabled for better performance
+
+### Assertions
+
+Response assertions have been configured to verify:
+- Response contains "email" field
+- Successful HTTP status codes
+
+## ? Performance Monitoring
+
+The test plan includes multiple result collectors:
+
+1. **Graph Results**: Visual representation of response times and throughput
+2. **Summary Report**: Aggregated test metrics including:
+   - Average response time
+   - Min/Max response times
+   - Throughput (requests/second)
+   - Error rate percentage
+3. **View Results Tree**: Detailed inspection of individual requests and responses
+
+## ? Test Results
+
+Initial test results with 10 concurrent users and 5 iterations each showed:
+
+- Successful simulation of concurrent API requests
+- Acceptable average response times
+- Low error rate under the tested load
+- Proper validation of response data
+
+## ? How to Run
+
+1. Install [Apache JMeter](https://jmeter.apache.org/download_jmeter.cgi) (v5.6.3 or later recommended)
+2. Clone this repository
+3. Open the `Thread Group.jmx` file in JMeter
+4. Click the Run button or press Ctrl+R to start the test
+
+## ? Use Cases
+
+This simulator can be used for:
+
+- API performance testing
+- Load capacity evaluation
+- Response time analysis
+- Reliability testing
+- Error handling validation
+
+## ? Related Projects
+
+If you need more advanced setups, check out the [jmeter-docker](https://github.com/ajeetraina/jmeter-docker) repository for setting up JMeter in a distributed Docker environment.
+
+## ? License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
